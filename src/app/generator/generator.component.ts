@@ -1,10 +1,3 @@
-/*
-  TO DO:
-    - gerar atributos do pokemon
-      - personalidade / mood
-    - chance de shyni
-    - chance de overgrowing
-*/
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -107,6 +100,8 @@ export class GeneratorComponent {
   }
 
   filterByBiome(biome: string): PokemonByBiomeInterface[] {
+    if(biome === 'All') return this.pokemons;
+    
     return this.pokemons.filter(
       (p) => p.habitat1 === biome || p.habitat2 === biome
     );
