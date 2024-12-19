@@ -1,0 +1,95 @@
+<div class="container" [ngClass]="{'expanded': showPokedex}">
+    <div class="form-wrapper">
+        <h1>Encontro Pokémon</h1>
+        <div class="form-group">
+            <label for="biome">Selecione o Bioma:</label>
+            <select id="biome" [(ngModel)]="selectedBiome">
+                <option *ngFor="let biome of biomes" [value]="biome">{{ biome }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ranking">Selecione o Ranking:</label>
+            <select id="ranking" [(ngModel)]="selectedRanking">
+                <option *ngFor="let ranking of rankings" [value]="ranking">{{ ranking }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ranking">Selecione um Pokemon específico:</label>
+            <select id="ranking" [(ngModel)]="selectedPokemon">
+                <option [value]=""></option>
+                <option *ngFor="let pokemon of pokemons" [value]="pokemon.name">{{ pokemon.name }}</option>
+            </select>
+        </div>
+        <button (click)="generateEncounter()">Gerar Encontro</button>
+    </div>
+
+    <div class="pokedex-wrapper" *ngIf="showPokedex">
+        <div class="pokedex-entry">
+            <h2>
+                <img *ngIf="isShiny" [src]="shinyImage" alt="shiny" class="ranking-image"/>
+                <img *ngIf="isOvergrown" [src]="overgrownImage" alt="overgrown" class="ranking-image"/>
+                #{{ pokemonInfos?.Number }} {{ pokemonInfos?.Name }}
+                <img [src]="generatedPokemon.rankingImage" alt="generatedPokemon.ranking" class="ranking-image"/>
+            </h2>
+            <div class="types">
+                <span [ngClass]="getTypeClass(pokemonInfos?.Type1)" class="type-box">
+                    {{ pokemonInfos?.Type1 }}
+                </span> 
+                <span *ngIf="pokemonInfos?.Type2" [ngClass]="getTypeClass(pokemonInfos?.Type2)" class="type-box">
+                    {{ pokemonInfos?.Type2 }}
+                </span>
+            </div> 
+            <img [src]="generatedPokemon.pokedexImage" alt="{{ pokemonInfos?.name }}" class="pokemon-image" />
+            <div class="description">
+                <strong>{{ pokemonInfos?.DexCategory }}</strong><br>
+                {{ pokemonInfos?.DexDescription }}
+            </div>
+            <div class="infos">
+                <div><strong>Gênero:</strong> {{ generatedPokemon.gender }}</div>
+                <div class="measure"><strong>Peso:</strong> {{ pokemonInfos?.Weight.Kilograms }} kg</div>
+                <div class="measure"><strong>Altura:</strong> {{ pokemonInfos?.Height.Meters }} m</div>
+            </div>
+            <div class="infos">
+                <div><strong>Habilidades:</strong> {{ pokemonInfos?.Ability1 }}{{ pokemonInfos?.Ability2 ? ' & ' + pokemonInfos?.Ability2 : '' }}</div>
+                <div><strong>Natureza:</strong> {{ generatedPokemon.nature }}</div>
+            </div>
+            <div class="attributes-container">
+                <div class="main-attributes">
+                    <!-- ATTRIBUTES -->
+                    <div *ngFor="let attribute of attributes; let i = index">
+                        <strong>{{ attribute }}:</strong>
+                        <div class="attribute-balls">
+                            <div *ngFor="let ball of getBalls(generatedPokemon.getAttribute(attribute), maxAttributes[i])" 
+                                 [ngClass]="ball ? 'filled' : 'empty'"></div>
+                        </div>
+                    </div>
+                    <!-- SOCIAL ATTRIBUTES -->
+                    <div *ngFor="let attribute of socialAttributes">
+                        <strong>{{ capitalizeFirstLetter(attribute) }}:</strong>
+                        <div class="attribute-balls">
+                            <div *ngFor="let ball of getBalls(generatedPokemon.getAttribute(attribute), 5)" 
+                                 [ngClass]="ball ? 'filled-' + attribute : 'empty'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills">
+                    <!-- SKILLS -->
+                    <div *ngFor="let attribute of skills">
+                        <strong>{{ capitalizeFirstLetter(attribute) }}:</strong>
+                        <div class="attribute-balls">
+                            <div *ngFor="let ball of getBalls(generatedPokemon.getAttribute(attribute), 5)" 
+                                 [ngClass]="ball ? 'filled-skills' : 'empty'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button (click)="resetForm()">Voltar</button>
+        </div>
+        <div class="movements-wrapper">
+            <h3>Movimentos</h3>
+            <div class="movements">
+                <img *ngFor="let move of generatedPokemon.moves" [src]="getMoveImage(move.Name)" alt="{{ move }}" class="move-image"/>
+            </div>
+        </div>
+    </div>
+</div>

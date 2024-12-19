@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
+import { GeneratorComponent } from './generator/generator.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [GeneratorComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  // styleUrl: './app.component.scss',
+  standalone: true
 })
 export class AppComponent {
   title = 'pokemon-encounter-generation';
