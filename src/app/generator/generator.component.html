@@ -1,26 +1,26 @@
 <div class="container" [ngClass]="{'expanded': showPokedex}">
     <div class="form-wrapper">
-        <h1>Encontro Pokémon</h1>
+        <h1>Pokémon Encounter</h1>
         <div class="form-group">
-            <label for="biome">Selecione o Bioma:</label>
+            <label for="biome">Choose a Biome:</label>
             <select id="biome" [(ngModel)]="selectedBiome">
                 <option *ngFor="let biome of biomes" [value]="biome">{{ biome }}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="ranking">Selecione o Ranking:</label>
+            <label for="ranking">Choose a Ranking:</label>
             <select id="ranking" [(ngModel)]="selectedRanking">
                 <option *ngFor="let ranking of rankings" [value]="ranking">{{ ranking }}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="ranking">Selecione um Pokemon específico:</label>
+            <label for="ranking">Choose a specific Pokémon:</label>
             <select id="ranking" [(ngModel)]="selectedPokemon">
                 <option [value]=""></option>
                 <option *ngFor="let pokemon of pokemons" [value]="pokemon.name">{{ pokemon.name }}</option>
             </select>
         </div>
-        <button (click)="generateEncounter()">Gerar Encontro</button>
+        <button (click)="generateEncounter()">Generate Encounter</button>
     </div>
 
     <div class="pokedex-wrapper" *ngIf="showPokedex">
@@ -45,17 +45,16 @@
                 {{ pokemonInfos?.DexDescription }}
             </div>
             <div class="infos">
-                <div><strong>Gênero:</strong> {{ generatedPokemon.gender }}</div>
-                <div class="measure"><strong>Peso:</strong> {{ pokemonInfos?.Weight.Kilograms }} kg</div>
-                <div class="measure"><strong>Altura:</strong> {{ pokemonInfos?.Height.Meters }} m</div>
+                <div><strong>Gender:</strong> {{ generatedPokemon.gender }}</div>
+                <div class="measure"><strong>Weight:</strong> {{ pokemonInfos?.Weight.Kilograms }} kg</div>
+                <div class="measure"><strong>Height:</strong> {{ pokemonInfos?.Height.Meters }} m</div>
             </div>
             <div class="infos">
-                <div><strong>Habilidades:</strong> {{ pokemonInfos?.Ability1 }}{{ pokemonInfos?.Ability2 ? ' & ' + pokemonInfos?.Ability2 : '' }}</div>
-                <div><strong>Natureza:</strong> {{ generatedPokemon.nature }}</div>
+                <div><strong>Abilities:</strong> {{ pokemonInfos?.Ability1 }}{{ pokemonInfos?.Ability2 ? ' & ' + pokemonInfos?.Ability2 : '' }}</div>
+                <div><strong>Nature:</strong> {{ generatedPokemon.nature }}</div>
             </div>
             <div class="attributes-container">
                 <div class="main-attributes">
-                    <!-- ATTRIBUTES -->
                     <div *ngFor="let attribute of attributes; let i = index">
                         <strong>{{ attribute }}:</strong>
                         <div class="attribute-balls">
@@ -63,7 +62,6 @@
                                  [ngClass]="ball ? 'filled' : 'empty'"></div>
                         </div>
                     </div>
-                    <!-- SOCIAL ATTRIBUTES -->
                     <div *ngFor="let attribute of socialAttributes">
                         <strong>{{ capitalizeFirstLetter(attribute) }}:</strong>
                         <div class="attribute-balls">
@@ -73,7 +71,6 @@
                     </div>
                 </div>
                 <div class="skills">
-                    <!-- SKILLS -->
                     <div *ngFor="let attribute of skills">
                         <strong>{{ capitalizeFirstLetter(attribute) }}:</strong>
                         <div class="attribute-balls">
@@ -83,10 +80,10 @@
                     </div>
                 </div>
             </div>
-            <button (click)="resetForm()">Voltar</button>
+            <button (click)="resetForm()">Back</button>
         </div>
         <div class="movements-wrapper">
-            <h3>Movimentos</h3>
+            <h3>Moves</h3>
             <div class="movements">
                 <img *ngFor="let move of generatedPokemon.moves" [src]="getMoveImage(move.Name)" alt="{{ move }}" class="move-image"/>
             </div>

@@ -12,7 +12,7 @@
 }
 
 .container.expanded {
-    max-width: none;  // Remove a limitação de largura quando a classe é aplicada
+    max-width: none;
 }
 
 .form-wrapper {
@@ -124,10 +124,6 @@ h2 {
     font-size: 1.2rem;
 }
 
-// .measure {
-//     margin-left: 16px;
-// }
-
 .attributes-container {
     display: flex;
     justify-content: space-between;
@@ -153,35 +149,35 @@ h2 {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #ddd; /* cor para bolinhas vazias */
+    background-color: #ddd;
     transition: background-color 0.3s;
 }
 
 .attribute-balls div.filled {
-    background-color: #48A49D; /* cor para bolinhas preenchidas */
+    background-color: #48A49D;
 }
 
 .attribute-balls div.filled-tough {
-    background-color: #F5E28E; /* cor para bolinhas preenchidas */
+    background-color: #F5E28E;
 }
 .attribute-balls div.filled-cool {
-    background-color: #FBA485; /* cor para bolinhas preenchidas */
+    background-color: #FBA485;
 }
 .attribute-balls div.filled-beauty {
-    background-color: #A5BDD9; /* cor para bolinhas preenchidas */
+    background-color: #A5BDD9;
 }
 .attribute-balls div.filled-cute {
-    background-color: #F8AABD; /* cor para bolinhas preenchidas */
+    background-color: #F8AABD;
 }
 .attribute-balls div.filled-skills {
-    background-color: #A74D39; /* cor para bolinhas preenchidas */
+    background-color: #A74D39;
 }
 .attribute-balls div.filled-clever {
-    background-color: #A3CF8E; /* cor para bolinhas preenchidas */
+    background-color: #A3CF8E; 
 }
 
 .attribute-balls div.empty {
-    background-color: #ccc; /* cor para bolinhas vazias */
+    background-color: #ccc;
 }
 
 button {
@@ -201,7 +197,7 @@ button:hover {
 }
 
 .movements-wrapper {
-    width: 45%; /* Ajuste da largura */
+    width: 45%;
     padding: 20px;
     background: #f0f0f0;
     border-radius: 8px;
@@ -217,7 +213,7 @@ h3 {
 
 .move-image {
     width: 100%;
-    max-width: 100px; /* Ajuste o tamanho máximo das imagens */
+    max-width: 100px;
     height: auto;
     margin: 10px;
     transition: transform 0.3s;
